@@ -1,8 +1,8 @@
-1.git clone http://github.com/Ajeant/leecode
+﻿1.git clone http://github.com/Ajeant/leecode
 2.git init
 3.git add .
 4.git commit -m "first commit"
-5.git remote add origin (git@github.com:Ajeant/leecode.git�ƺ�����)
+5.git remote add origin (git@github.com:Ajeant/leecode.git似乎不行)
 		https://github.com/Ajeant/test.git
 6.git remote rm origin
 7.git push -u origin master
@@ -15,8 +15,8 @@ hint: its remote counterpart. Integrate the remote changes (e.g.
 hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
-������������Ǳ�ʾgithub�е�README.md�ļ����ڱ��ش���Ŀ¼�У�
-����ͨ������������д���ϲ�
+出现这个问题是表示github中的README.md文件不在本地代码目录中，
+可以通过如下命令进行代码合并
 1.git pull --rebase origin master
 2.git push origin master
 
@@ -30,149 +30,149 @@ error: please commit or stash them.
 1. git init
 2. git add readme.md
 3. git commit -m "first"
-4. git status �������������ʱ�����ղֿ⵱ǰ��״̬,�����޸�δ�ύ
-5. git diff (readme.md) ����˼����ǲ鿴difference
-6. git log ( --pretty=oneline)һ�������ǰ汾�ţ�-1��ʾ���һ���ύ��
-7. git reset --hard HEAD^  ���˵���һ���汾
-8. git reflog���Կ���������ʷ�����ڰ汾����
-9. git diff HEAD -- readme.txt ������Բ鿴�������Ͱ汾���������°汾������
-10. git checkout -- readme.txt ��˼���ǣ��� readme.txt �ļ��ڹ��������޸�ȫ������
-11. ����SSH Key�����û���Ŀ¼�£�������û��.sshĿ¼������У��ٿ���
-���Ŀ¼����û�� id_rsa �� id_rsa.pub �������ļ�������Ѿ����ˣ���ֱ��
-������һ�������û�У���Shell��Windows�´�Git Bash��������SSH Key��
+4. git status 命令可以让我们时刻掌握仓库当前的状态,如已修改未提交
+5. git diff (readme.md) 顾名思义就是查看difference
+6. git log ( --pretty=oneline)一串数字是版本号（-1表示最后一次提交）
+7. git reset --hard HEAD^  回退到上一个版本
+8. git reflog可以看到命令历史，用于版本更换
+9. git diff HEAD -- readme.txt 命令可以查看工作区和版本库里面最新版本的区别
+10. git checkout -- readme.txt 意思就是，把 readme.txt 文件在工作区的修改全部撤销
+11. 创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看
+这个目录下有没有 id_rsa 和 id_rsa.pub 这两个文件，如果已经有了，可直接
+跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
 $ ssh-keygen -t rsa -C "youremail@example.com"
-12. ��½GitHub���򿪡�Account settings������SSH Keys��ҳ�棺
-Ȼ�󣬵㡰Add SSH Key������������Title����Key�ı�����ճ�� id_rsa.pub �ļ�
-�����ݣ�
-13. Ҫ����һ��Զ�̿⣬ʹ������ git remote add origin git@servername:path/repo-name.git
-14. ���ؿ�������������͵�Զ�̿���git push -u origin master
-15. ���Ǵ��� dev ��֧��Ȼ���л��� dev ��֧
+12. 登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴 id_rsa.pub 文件
+的内容：
+13. 要关联一个远程库，使用命令 git remote add origin git@servername:path/repo-name.git
+14. 本地库的所有内容推送到远程库上git push -u origin master
+15. 我们创建 dev 分支，然后切换到 dev 分支
 git checkout -b dev
--b ������ʾ�������л����൱��������������
+-b 参数表示创建并切换，相当于以下两条命令
 git branch dev
 git checkout dev
-16. git branch�鿴��ǰ��֧
-17. �� dev ��֧�Ĺ����ɹ��ϲ��� master ��֧�ϣ�
+16. git branch查看当前分支
+17. 把 dev 分支的工作成果合并到 master 分支上：
 $ git merge dev
-18. ɾ����֧git branch -d dev�������δ�ϲ�����-D��
-19. �ô������� git log Ҳ���Կ�����֧�ĺϲ������
+18. 删除分支git branch -d dev（如果还未合并则用-D）
+19. 用带参数的 git log 也可以看到分支的合并情况：
 $ git log --graph --pretty=oneline --abbrev-commit
-20. ׼���ϲ� dev ��֧����ע�� --no-ff ��������ʾ���� Fast forward ��
+20. 准备合并 dev 分支，请注意 --no-ff 参数，表示禁用 Fast forward ：
 $ git merge --no-ff -m "merge with no-ff" dev
-21. Git���ṩ��һ�� stash ���ܣ����԰ѵ�ǰ�����ֳ������ء����������Ժ��
-���ֳ����������������������;ǰ���޸�bug��
+21. Git还提供了一个 stash 功能，可以把当前工作现场“储藏”起来，等以后恢
+复现场后继续工作：（可用于中途前往修复bug）
 $ git stash
 22. git stash list
-23. �����ֳ����ڣ�Git��stash���ݴ���ĳ���ط��ˣ�������Ҫ�ָ�һ�£���������
-����
-һ���� git stash apply �ָ������ǻָ���stash���ݲ���ɾ��������Ҫ
-�� git stash drop ��ɾ����
-��һ�ַ�ʽ���� git stash pop ���ָ���ͬʱ��stash����Ҳɾ�ˣ�
-24. Ҫ�鿴Զ�̿����Ϣ���� git remote��-v������ϸ��
-25. �����С����Զ�̿�cloneʱ��Ĭ������£����С���ֻ�ܿ�������
-�� master ��֧�����ſ����� git branch �������
+23. 工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办
+法：
+一是用 git stash apply 恢复，但是恢复后，stash内容并不删除，你需要
+用 git stash drop 来删除；
+另一种方式是用 git stash pop ，恢复的同时把stash内容也删了：
+24. 要查看远程库的信息，用 git remote（-v更加详细）
+25. 当你的小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地
+的 master 分支。不信可以用 git branch 命令看看：
 $ git branch
 * master
-���ڣ����С���Ҫ�� dev ��֧�Ͽ������ͱ��봴��Զ�� origin �� dev ��֧
-�����أ��������������������� dev ��֧��
+现在，你的小伙伴要在 dev 分支上开发，就必须创建远程 origin 的 dev 分支
+到本地，于是他用这个命令创建本地 dev 分支：
 $ git checkout -b dev origin/dev
-26. git tag��v1.0�������ǩ��
+26. git tag（v1.0）（打标签）
 27. git show v1.0
-28. �����Դ�������˵���ı�ǩ���� -a ָ����ǩ���� -m ָ��˵�����֣�
+28. 还可以创建带有说明的标签，用 -a 指定标签名， -m 指定说明文字：
 $ git tag -a v0.1 -m "version 0.1 released" 3628164
-29. ������ͨ�� -s ��˽Կǩ��һ����ǩ��
+29. 还可以通过 -s 用私钥签名一个标签：
 $ git tag -s v0.2 -m "signed version 0.2 released" fec145a
-30. �����ǩ����ˣ�Ҳ����ɾ����
+30. 如果标签打错了，也可以删除：
 $ git tag -d v0.1
-31. ���Ҫ����ĳ����ǩ��Զ�̣�ʹ������ git push origin &lt;tagname&gt; ��
+31. 如果要推送某个标签到远程，使用命令 git push origin &lt;tagname&gt; ：
 $ git push origin v1.0
-32. ���ߣ�һ��������ȫ����δ���͵�Զ�̵ı��ر�ǩ��
+32. 或者，一次性推送全部尚未推送到远程的本地标签：
 $ git push origin --tags
-33. �����ǩ�Ѿ����͵�Զ�̣�Ҫɾ��Զ�̱�ǩ���鷳һ�㣬�ȴӱ���ɾ����
+33. 如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
 $ git tag -d v0.9
 Deleted tag 'v0.9' (was 6224937)
-Ȼ�󣬴�Զ��ɾ����ɾ������Ҳ��push�����Ǹ�ʽ���£�
+然后，从远程删除。删除命令也是push，但是格式如下：
 $ git push origin :refs/tags/v0.9
-34. ����ֻ��Ҫ��һ���������Git���Ժ� st �ͱ�ʾ status ��
+34. 我们只需要敲一行命令，告诉Git，以后 st 就表示 status ：
 $ git config --global alias.st status
-35. �����ļ������ˣ�ÿ���ֿ��Git�����ļ������� .git/config �ļ��У�
+35. 配置文件放哪了？每个仓库的Git配置文件都放在 .git/config 文件中：
 $ cat .git/config
 
 
-36. �Git������
-��һ������װ git ��
+36. 搭建Git服务器
+第一步，安装 git ：
 $ sudo apt-get install git
-�ڶ���������һ�� git �û����������� git ����
+第二步，创建一个 git 用户，用来运行 git 服务：
 $ sudo adduser git
-������������֤���¼
-�ռ�������Ҫ��¼���û��Ĺ�Կ�����������Լ��� id_rsa.pub �ļ��������й�
-Կ���뵽 /home/git/.ssh/authorized_keys �ļ��һ��һ����
-���Ĳ�����ʼ��Git�ֿ⣺
-��ѡ��һ��Ŀ¼��ΪGit�ֿ⣬�ٶ��� /srv/sample.git ���� /srv Ŀ¼������
-���
+第三步，创建证书登录
+收集所有需要登录的用户的公钥，就是他们自己的 id_rsa.pub 文件，把所有公
+钥导入到 /home/git/.ssh/authorized_keys 文件里，一行一个。
+第四步，初始化Git仓库：
+先选定一个目录作为Git仓库，假定是 /srv/sample.git ，在 /srv 目录下输入
+命令：
 $ sudo git init --bare sample.git
-Git�ͻᴴ��һ����ֿ⣬��ֿ�û�й���������Ϊ�������ϵ�Git�ֿⴿ����Ϊ��
-���������Բ����û�ֱ�ӵ�¼����������ȥ�Ĺ����������ҷ������ϵ�Git�ֿ�ͨ��
-���� .git ��β��Ȼ�󣬰�owner��Ϊ git
+Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了
+共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常
+都以 .git 结尾。然后，把owner改为 git
 $ sudo chown -R git:git sample.git
-���岽������shell��¼��
-���ڰ�ȫ���ǣ��ڶ���������git�û���������¼shell�������ͨ����
-�� /etc/passwd �ļ���ɡ��ҵ����������һ�У�
+第五步，禁用shell登录：
+出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编
+辑 /etc/passwd 文件完成。找到类似下面的一行：
 git:x:1001:1001:,,,:/home/git:/bin/bash
-��Ϊ��
+改为：
 git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
-������ git �û���������ͨ��sshʹ��git�����޷���¼shell����Ϊ����Ϊ git ��
-��ָ���� git-shell ÿ��һ��¼���Զ��˳���
-����������¡Զ�ֿ̲⣺
-���ڣ�����ͨ�� git clone �����¡Զ�ֿ̲��ˣ��ڸ��Եĵ��������У�
+这样， git 用户可以正常通过ssh使用git，但无法登录shell，因为我们为 git 用
+户指定的 git-shell 每次一登录就自动退出。
+第六步，克隆远程仓库：
+现在，可以通过 git clone 命令克隆远程仓库了，在各自的电脑上运行：
 $ git clone git@server:/srv/sample.git
 Cloning into 'sample'...
 warning: You appear to have cloned an empty repository.
 
 
-37. .gitignore���Թ�������ȼ�  
-�� .gitingore �ļ��У�ÿһ��ָ��һ�����Թ���Git�����Թ����ʱ���ж����Դ��
-�������ȼ����£��ɸߵ��ͣ���
-1. ���������ж�ȡ���õĺ��Թ���
-2. ��ǰĿ¼����Ĺ���
-3. ����Ŀ¼����Ĺ������ε���
-4. $GIT_DIR/info/exclude �ļ��ж���Ĺ���
-5. core.excludesfile�ж����ȫ�ֹ���
-38. .gitignore���Թ����ƥ���﷨  
-�� .gitignore �ļ��У�ÿһ�еĺ��Թ�����﷨���£�
-1. �ո�ƥ�������ļ�������Ϊ�ָ��������÷�б��ת��
-2. �ԡ�������ͷ���ж��ᱻ Git ���ԡ���#��ͷ���ļ���ʶע�ͣ�����ʹ�÷�б��
-����ת�塣
-3. ����ʹ�ñ�׼��globģʽƥ�䡣��ν��globģʽ��ָshell��ʹ�õļ��˵�
-�������ʽ��
-4. ��б��"/"��ͷ��ʾĿ¼��"/"������ģʽֻƥ���ļ����Լ��ڸ��ļ���·���µ�
-���ݣ����ǲ�ƥ����ļ���"/"��ʼ��ģʽƥ����Ŀ��Ŀ¼�����һ��ģʽ������
-б�ܣ�����ƥ������ڵ�ǰ .gitignore �ļ�·�������ݣ������ģʽ����
- .gitignore �ļ��У����������Ŀ��Ŀ¼��
-5. ���Ǻ�"*"ͨ�����ַ�����ƥ���������ַ���ʹ�������Ǻ�"**" ��ʾƥ������
-�м�Ŀ¼������`a/**/z`����ƥ�� a/z, a/b/z �� a/b/c/z�ȡ�
-6. ���ʺ�"?"ͨ�䵥���ַ�����ƥ��һ�������ַ���
-7. �Է�����"[]"���������ַ���ƥ���б�����ƥ���κ�һ�����ڷ������е��ַ���
-����[abc]��ʾҪôƥ��һ��a��Ҫôƥ��һ��b��Ҫôƥ��һ��c��
-����ڷ�������ʹ�ö̻��߷ָ������ַ�����ʾ�������������ַ���Χ�ڵĶ�����
-ƥ�䡣����[0-9]��ʾƥ������0��9�����֣�[a-z]��ʾƥ�������Сд��ĸ����
-8. ��̾��"!"��ʾ������(����)ƥ�䵽���ļ���Ŀ¼����Ҫ����ָ��ģʽ������ļ�
-��Ŀ¼��������ģʽǰ���Ͼ�̾�ţ�!��ȡ������Ҫ�ر�ע����ǣ�����ļ��ĸ�Ŀ¼
-�Ѿ���ǰ��Ĺ����ų����ˣ���ô������ļ���"!"�����ǲ������õġ�
-Ҳ����˵"!"��ͷ��ģʽ��ʾ�񶨣����ļ������ٴα�����������ų��˸��ļ���
-����Ŀ¼����ʹ��"!"Ҳ�����ٴα�����������ʹ�÷�б�ܽ���ת�塣
+37. .gitignore忽略规则的优先级  
+在 .gitingore 文件中，每一行指定一个忽略规则，Git检查忽略规则的时候有多个来源，
+它的优先级如下（由高到低）：
+1. 从命令行中读取可用的忽略规则
+2. 当前目录定义的规则
+3. 父级目录定义的规则，依次递推
+4. $GIT_DIR/info/exclude 文件中定义的规则
+5. core.excludesfile中定义的全局规则
+38. .gitignore忽略规则的匹配语法  
+在 .gitignore 文件中，每一行的忽略规则的语法如下：
+1. 空格不匹配任意文件，可作为分隔符，可用反斜杠转义
+2. 以“＃”开头的行都会被 Git 忽略。即#开头的文件标识注释，可以使用反斜杠
+进行转义。
+3. 可以使用标准的glob模式匹配。所谓的glob模式是指shell所使用的简化了的
+正则表达式。
+4. 以斜杠"/"开头表示目录；"/"结束的模式只匹配文件夹以及在该文件夹路径下的
+内容，但是不匹配该文件；"/"开始的模式匹配项目跟目录；如果一个模式不包含
+斜杠，则它匹配相对于当前 .gitignore 文件路径的内容，如果该模式不在
+ .gitignore 文件中，则相对于项目根目录。
+5. 以星号"*"通配多个字符，即匹配多个任意字符；使用两个星号"**" 表示匹配任意
+中间目录，比如`a/**/z`可以匹配 a/z, a/b/z 或 a/b/c/z等。
+6. 以问号"?"通配单个字符，即匹配一个任意字符；
+7. 以方括号"[]"包含单个字符的匹配列表，即匹配任何一个列在方括号中的字符。
+比如[abc]表示要么匹配一个a，要么匹配一个b，要么匹配一个c；
+如果在方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以
+匹配。比如[0-9]表示匹配所有0到9的数字，[a-z]表示匹配任意的小写字母）。
+8. 以叹号"!"表示不忽略(跟踪)匹配到的文件或目录，即要忽略指定模式以外的文件
+或目录，可以在模式前加上惊叹号（!）取反。需要特别注意的是：如果文件的父目录
+已经被前面的规则排除掉了，那么对这个文件用"!"规则是不起作用的。
+也就是说"!"开头的模式表示否定，该文件将会再次被包含，如果排除了该文件的
+父级目录，则使用"!"也不会再次被包含。可以使用反斜杠进行转义。
 
 
-### git�ֿ�ɾ�������ύ��ʷ��¼����Ϊһ���ɾ����²ֿ�
-1. �л����·�֧
+### git仓库删除所有提交历史记录，成为一个干净的新仓库
+1. 切换到新分支
 	git checkout --orphan latest_branch
-2. ���������ļ�������.gitignore���������ų���
+2. 缓存所有文件（除了.gitignore中声明的排除）
 	git add -A
-3. �ύ���ٹ����ļ���Commit the changes��
-	git commit -am ��commit message��
-4. ɾ��master��֧��delete the branch��
+3. 提交跟踪过的文件（Commit the changes）
+	git commit -am “commit message”
+4. 删除master分支（delete the branch）
 	git branch -D master
-5. ��������ǰ��֧Ϊmaster��Rename the current branch to master��
+5. 重命名当前分支为master（Rename the current branch to master）
 	git branch -m master
-6. �ύ��Զ��master��֧
+6. 提交到远程master分支
 	git push -f origin master

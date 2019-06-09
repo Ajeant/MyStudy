@@ -109,5 +109,24 @@ return x + y;
 </html>
 ```
 
+### 遍历
+```javascript
+var cidList = [[${cidList}]];
+console.log(cidList);    // 0: Object { sno: 1, cid: 1001 }
+console.log("=========");
+Object.keys(cidList).forEach(function(key){
+	// 得到json对象
+	console.log(key,cidList[key]);  // Object { sno: 1, cid: 1001 }
+	for(var l in cidList[key]) {
+		// 只遍历到了sno和cid
+		console.log(l);
+	}
+	for(var l in cidList[key]) {
+		// 可行，遍历了sno和cid的值，1，1001
+		console.log(cidList[key][l]);
+	}
+});
+```
+
 
 

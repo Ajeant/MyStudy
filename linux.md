@@ -41,7 +41,7 @@ linuxidc ALL=(ALL) ALL
 1. 文件类型file、stat
 
 ### SSH 
-1. 查看是否安装了SSH服务：sudo ps -e |grep ssh
+1. 查看是否安装了SSH服务：sudo ps -e | grep ssh
 
 2. 如果不存在sshd服务则是没安装：sudo apt-get install openssh-server
 
